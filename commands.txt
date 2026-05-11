@@ -1,0 +1,125 @@
+# Secure Private VM Access Architecture - Commands
+
+# ==========================================
+# SSH INTO JUMP BOX VM
+# ==========================================
+
+ssh -i jumpbox-key.pem azureuser@<JumpBox-Public-IP>
+
+# Example
+# ssh -i jumpbox-key.pem azureuser@20.x.x.x
+
+
+# ==========================================
+# SSH FROM JUMP BOX TO PRIVATE VM
+# ==========================================
+
+ssh azureuser@<Private-VM-IP>
+
+# Example
+# ssh azureuser@10.0.2.4
+
+
+# ==========================================
+# VERIFY PRIVATE IP INSIDE VM
+# ==========================================
+
+ip a
+
+hostname -I
+
+
+# ==========================================
+# UPDATE PACKAGE REPOSITORIES
+# ==========================================
+
+sudo apt update
+
+
+# ==========================================
+# INSTALL APACHE WEB SERVER
+# ==========================================
+
+sudo apt install apache2 -y
+
+
+# ==========================================
+# CHECK APACHE STATUS
+# ==========================================
+
+systemctl status apache2
+
+
+# ==========================================
+# RESTART APACHE
+# ==========================================
+
+sudo systemctl restart apache2
+
+
+# ==========================================
+# CHECK VM CONNECTIVITY
+# ==========================================
+
+ping <Private-VM-IP>
+
+
+# ==========================================
+# CHECK ACTIVE NETWORK INTERFACES
+# ==========================================
+
+ip addr
+
+
+# ==========================================
+# VIEW ROUTING TABLE
+# ==========================================
+
+ip route
+
+
+# ==========================================
+# CHECK SSH SERVICE STATUS
+# ==========================================
+
+sudo systemctl status ssh
+
+
+# ==========================================
+# BASIC LINUX COMMANDS
+# ==========================================
+
+pwd
+ls
+cd
+mkdir
+touch
+cat
+
+
+# ==========================================
+# GIT COMMANDS USED
+# ==========================================
+
+git init
+
+git add .
+
+git commit -m "Initial commit"
+
+git branch -M main
+
+git remote add origin <repo-url>
+
+git push -u origin main
+
+
+# ==========================================
+# OPTIONAL CLEANUP
+# ==========================================
+
+# Delete entire resource group from Azure Portal
+# This removes all resources together.
+
+# Resource Group:
+# rg-secure-jumpbox
