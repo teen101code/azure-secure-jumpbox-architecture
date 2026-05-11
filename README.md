@@ -4,17 +4,15 @@
 
 This project demonstrates a secure method of accessing private virtual machines in Microsoft Azure using a Jump Box architecture.
 
-The solution was designed to simulate real-world enterprise cloud security practices where production virtual machines are not directly exposed to the public internet.
+The implementation simulates real-world enterprise cloud security practices where workload virtual machines are deployed inside a private subnet without direct exposure to the public internet.
 
-Instead of assigning a public IP to the private VM, administrative access is controlled through a dedicated Jump Box VM hosted in a public subnet.
+Administrative access is securely controlled through a dedicated Jump Box VM hosted in a public subnet.
 
 ---
 
-# Architecture
+# Architecture Diagram
 
-## Architecture Diagram
-
-![Architecture](architecture/architecture-diagram.png)
+![Architecture Diagram](architecture/architecture-diagram.png)
 
 ---
 
@@ -34,14 +32,14 @@ Instead of assigning a public IP to the private VM, administrative access is con
 
 | Component | Purpose |
 |---|---|
-| Resource Group | Logical container for all resources |
-| Virtual Network (VNet) | Provides isolated cloud networking |
+| Resource Group | Logical container for Azure resources |
+| Virtual Network (VNet) | Isolated cloud network |
 | Public Subnet | Hosts Jump Box VM |
-| Private Subnet | Hosts private VM without public IP |
-| Jump Box VM | Secure administrative entry point |
-| Private VM | Internal workload VM |
-| NSGs | Firewall rules controlling traffic |
-| SSH | Secure remote access |
+| Private Subnet | Hosts Private VM |
+| Jump Box VM | Secure administrative access point |
+| Private VM | Internal workload server |
+| NSGs | Firewall and traffic filtering |
+| SSH | Secure remote connectivity |
 
 ---
 
@@ -50,14 +48,14 @@ Instead of assigning a public IP to the private VM, administrative access is con
 The following security measures were implemented:
 
 - Private VM deployed without Public IP
-- SSH access restricted through Jump Box
-- NSG rules configured to limit inbound traffic
-- Internal communication performed over private IP addresses
-- Public exposure minimized using subnet isolation
+- SSH access controlled through Jump Box
+- NSG rules configured to restrict inbound traffic
+- Internal communication performed using private IP addresses
+- Subnet isolation used to minimize public exposure
 
 ---
 
-# Network Flow
+# Architecture Flow
 
 ```text
 User Laptop
@@ -72,9 +70,10 @@ Private Linux VM (Private IP)
 # Implementation Steps
 
 ## Step 1 — Create Resource Group
+
 Created a dedicated resource group to organize all Azure resources.
 
-Screenshot:
+### Screenshot
 
 ![Resource Group](screenshots/resourcegroup.png)
 
@@ -86,9 +85,9 @@ Configured:
 - Public Subnet
 - Private Subnet
 
-Screenshot:
+### Screenshot
 
-![Subnets](screenshots/subnet.png)
+![Subnet Configuration](screenshots/subnet.png)
 
 ---
 
@@ -98,44 +97,51 @@ Created:
 - NSG for Jump Box
 - NSG for Private VM
 
-Screenshots:
+### Screenshots
 
-![Jump Box NSG](screenshots/NSG-jumpbox.png)
+#### Jump Box NSG
 
-![Private VM NSG](screenshots/NSG-private.png)
+![Jump Box NSG](screenshots/nsg-jumpbox.png)
+
+#### Private VM NSG
+
+![Private VM NSG](screenshots/nsg-private.png)
 
 ---
 
 ## Step 4 — Deploy Virtual Machines
 
 Deployed:
-- Jump Box VM (with Public IP)
-- Private VM (without Public IP)
+- Jump Box VM with Public IP
+- Private VM without Public IP
 
-Screenshot:
+### Screenshot
 
-![VM Deployment](screenshots/VMs.png)
+![VM Deployment](screenshots/vm-deployment.png)
 
 ---
 
-## Step 5 — Secure SSH Connectivity
+## Step 5 — Verify VNet & VM Configuration
+
+Validated:
+- Private IP addressing
+- Virtual network configuration
+- Private subnet placement
+
+### Screenshot
+
+![VNet Overview](screenshots/vnet-overview.png)
+
+---
+
+## Step 6 — Secure SSH Connectivity
 
 - Connected to Jump Box using SSH
-- Connected to Private VM internally using private IP
+- Accessed Private VM internally using private IP
 
-Screenshot:
+### Screenshot
 
 ![SSH Login](screenshots/ssh-login.png)
-
----
-
-# Private VM Verification
-
-The private VM was configured without a public IP address and was accessible only through internal VNet communication.
-
-Screenshot:
-
-![VM Overview](screenshots/vm-overview.png)
 
 ---
 
@@ -145,34 +151,45 @@ Through this project, I gained hands-on experience with:
 
 - Azure Virtual Networking
 - Public vs Private Subnets
-- Secure VM Administration
 - Jump Box Architecture
-- Network Security Groups
 - SSH-based Secure Access
-- Internal Network Communication
+- Network Security Groups
+- Internal VM Communication
 - Cloud Security Best Practices
+- Secure Administrative Access Design
 
 ---
 
-# Future Improvements
+# Future Enhancements
 
-Possible future enhancements include:
+Possible future improvements include:
 
 - Azure Bastion Integration
 - VPN-based Secure Access
 - Azure AD Authentication
-- MFA Integration
+- Multi-Factor Authentication (MFA)
 - Just-In-Time (JIT) VM Access
-- Monitoring & Logging using Azure Monitor
+- Azure Monitor & Logging
 
 ---
 
 # Conclusion
 
-This project successfully demonstrates a secure and scalable cloud networking architecture for managing private virtual machines in Azure.
+This project demonstrates a secure and scalable cloud networking architecture for managing private virtual machines in Azure.
 
-The implementation follows cloud security best practices by minimizing public exposure and controlling administrative access through a secure Jump Box design pattern.
+The implementation follows cloud security best practices by minimizing public exposure and controlling administrative access through a secure Jump Box architecture.
 
-## Author
+---
 
-Tannu Sharma
+# Author
+
+## Tannu Sharma
+
+Aspiring Cloud & DevOps Engineer
+
+Hands-on learning in:
+- Azure Cloud
+- Networking
+- Cloud Security
+- Linux Administration
+- Infrastructure & Cloud Projects
